@@ -1,0 +1,2 @@
+# Soluter
+Simple Javascript Library
