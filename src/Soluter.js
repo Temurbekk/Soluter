@@ -1,5 +1,5 @@
 (function (global, $) {
-
+    // 'new's an object
     var Soluter = function (firstName, lastName, language) {
         return new Soluter.init(firstName, lastName, language);
     }
@@ -66,11 +66,33 @@
 
         setLang: function (langToSet) {
             this.language = langToSet;
-
             this.validate();
+            return this;
+        },
+        //jQuery method that accepts a selector and greeting type
+        HTMLGreeting: function(selector, formal){
+            if(!$){
+                throw 'jQuery not supported';
+            }
+
+            if(!selector){
+                throw 'Missing jQuery selector';
+            }
+
+            var message;
+
+            if (formal) { //if the message is formal, user will be greeted formally
+                message = this.formalGreeting()
+            } else {  //else the user will be greeted casually.
+                message = this.greeting();
+            }
+
+            $(selector).html(message);
 
             return this;
+
         }
+
 
 
 
@@ -82,6 +104,8 @@
         self.firstName = firstName || '';
         self.lastName = lastName || '';
         self.language = language || 'english';
+
+        validate();
     }
 
     Soluter.init.prototype = Soluter.prototype;
